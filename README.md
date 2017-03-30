@@ -9,6 +9,18 @@ Install
 Usage
 -----
 
+```text
+  Usage: csv2json [options] <file>
+
+  Options:
+
+    -h, --help               output usage information
+    -t, --tab                switches the separator from a comma to a tab
+    -d, --delimiter <value>  sets the symbol used to delimit text [default "]
+    -h, --header             this CSV file includes a header
+    -w, --windows-nl         sets the newline to "\r\n" instead of "\n"
+```
+
 CSV Grammar
 -----------
 
@@ -48,7 +60,7 @@ This can be set to anything other that `SEPARATOR` or `NL` using the `-d <value>
 
 #### NL
 
-This is set based on the current OS. So `\n` on Linux and macOS and `\r\n` on Windows.
+This can be set the the Windows newline `\r\n` using the `-w` or `--windows-nl` options.
 
 ![NL](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/NL.png)
 
