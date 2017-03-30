@@ -40,13 +40,9 @@ will be parsed as a CSV header as defined by the following grammar.
 
 ![value](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/value.png)
 
-#### delimited_string
+#### delimited_value
 
-![delimited_string](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/delimited_string.png)
-
-#### non_delimited_string
-
-![non_delimited_string](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/non_delimited_string.png)
+![delimited_string](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/delimited_value.png)
 
 #### SEPARATOR
 
@@ -66,6 +62,14 @@ This can be set to anything other that `SEPARATOR` or `NL` using the `-d <value>
 This can be set the the Windows newline `\r\n` using the `-w` or `--windows-nl` options.
 
 ![NL](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/NL.png)
+
+#### DEL_STRING
+
+![DEL_STRING](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/DEL_STRING.png)
+
+#### NON_DEL_STRING
+
+![NON_DEL_STRING](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/NON_DEL_STRING.png)
 
 ### Body
 
