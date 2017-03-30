@@ -1,1 +1,12 @@
+
+# Node
 node_modules
+
+# ANTLR
+*.java
+*.class
+*.tokens
+
+# ANTLR-RRD (Rail Road Diagrams)
+*.pdf
+*.html
