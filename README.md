@@ -15,7 +15,7 @@ CSV Grammar
 ### Header
 
 If you pass the `-h` or `--header` flags to `csv2json` the first line of input
-will be parsed as a CSV header based on the following grammar.
+will be parsed as a CSV header as defined by the following grammar.
 
 #### header
 
