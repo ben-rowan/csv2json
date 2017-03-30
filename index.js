@@ -10,9 +10,10 @@ var os = require('os');
 
 program
   .arguments('<file>')
-  .option('-t, --tab', 'Switches the separator from comma to tab')
-  .option('-d, --delimiter <text delimiter>', 'Sets the symbol used to delimit text [default "]')
-  .option('-h, --header', 'CSV file includes a header')
+  .option('-t, --tab', 'switches the separator from a comma to a tab')
+  .option('-d, --delimiter <value>', 'sets the symbol used to delimit text [default "]')
+  .option('-h, --header', 'this CSV file includes a header')
+  .option('-w, --windows-nl', 'sets the newline to "\\r\\n" instead of "\\n"')
   .action(function(file) {
 
     fs.readFile(file, 'utf8', function(err, csv) {
