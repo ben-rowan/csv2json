@@ -3,6 +3,9 @@ csv2json
 
 A command-line tool for parsing csv into json.
 
+> **NOTE:** _this project is currently a work in progress and will not function as
+> described below._
+
 Install
 -------
 
