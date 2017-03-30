@@ -1,9 +1,10 @@
 grammar header;
 
 header : value (SEPARATOR value)* NL ;
-value : delimited_string | non_delimited_string ;
-delimited_string : DELIMITER (~(DELIMITER) | DELIMITER DELIMITER)* DELIMITER ;
-non_delimited_string: ~(DELIMITER | NL | SEPARATOR)* ;
+value : delimited_value | NON_DEL_STRING ;
+delimited_value : DELIMITER DEL_STRING DELIMITER ;
 SEPARATOR: ',' ;
 DELIMITER: '"' ;
 NL: '\n' ;
+DEL_STRING: (~(DELIMITER) | DELIMITER DELIMITER)* ;
+NON_DEL_STRING: ~(DELIMITER | NL | SEPARATOR)* ;
