@@ -11,7 +11,8 @@ var os = require('os');
 
 // TOKEN ----------------------------------------------------------------------
 
-function Token(type, text) {
+function Token(type, text)
+{
     this.type = type;
     this.text = text;
 }
@@ -33,13 +34,15 @@ Token.names = [
     '_NUMBER'
 ];
 
-Token.prototype.stringify = function () {
+Token.prototype.stringify = function ()
+{
     return '<' + Token.names[this.type] + ',' + this.text + '>';
 };
 
 // LEXER ----------------------------------------------------------------------
 
-function LexerException(msg) {
+function LexerException(msg)
+{
     this.name = 'Lexer Exception';
     this.msg = msg;
 }
@@ -49,22 +52,32 @@ LexerException.prototype.toString = function()
     return this.name + ': ' + this.msg;
 };
 
-function Lexer(input) {
+function Lexer(input)
+{
     this.i = 0;
     this.input = input;
 }
 
-Lexer.prototype.consume = function () {
+Lexer.prototype.consume = function ()
+{
     ++this.i;
 };
 
-Lexer.prototype.c = function () {
+Lexer.prototype.peek = function (n)
+{
+    n = n || 1;
+    return this.input[this.i + n];
+};
+
+Lexer.prototype.c = function ()
+{
     return this.input[this.i];
 };
 
 // CSV LEXER ---------------------------------------------------------------
 
-function CsvLexer(csv, separator, delimiter, nl) {
+function CsvLexer(csv, separator, delimiter, nl)
+{
     Lexer.call(this, csv);
     this.separator = separator;
     this.delimiter = delimiter;
@@ -74,33 +87,77 @@ function CsvLexer(csv, separator, delimiter, nl) {
 CsvLexer.prototype = Object.create(Lexer.prototype);
 CsvLexer.prototype.constructor = CsvLexer;
 
-CsvLexer.prototype._NL = function () {
+// Only works correctly outside of delimiters
+CsvLexer.prototype._WS = function ()
+{
+    while (true) {
+        // Guard against collisions between these and common white space chars
+        if (this.c() === this.delimiter
+          || this.c() === this.separator
+          || this.c() === this.nl
+          || (this.c() + this.peek() === this.nl))  // Windows newline
+        {
+            break;
+        }
+        // Is white space
+        else if (this.c() === ' ' || this.c() === '\t' || this.c() === '\r' || this.c() === '\n') {
+            this.consume();
+        }
+        // Is any other character
+        else {
+            break;
+        }
+    }
+};
+
+CsvLexer.prototype._NL = function ()
+{
     this.consume();
     return new Token(Token.types.NL_TYPE, Token.names[Token.types.NL_TYPE]);
 };
 
-CsvLexer.prototype._DEL_STRING = function () {
+CsvLexer.prototype._DEL_STRING = function ()
+{
+    var backtrackIndex = this.i;
+    var delString = '';
+    var insideDelString = false;
+
+    this._WS();
+
+    if (this.c() === this.delimiter) {
+        while (true) {
+            switch (this.c()) {
+                case this.delimiter:
+                    break;
+                default:
+
+            }
+        }
+    }
+    else {
+        this.i = backtrackIndex;
+        return false;
+    }
+};
+
+CsvLexer.prototype._NON_DEL_STRING = function ()
+{
     var backtrackIndex = this.i;
 
     this.i = backtrackIndex;
     return false;
 };
 
-CsvLexer.prototype._NON_DEL_STRING = function () {
+CsvLexer.prototype._NUMBER = function ()
+{
     var backtrackIndex = this.i;
 
     this.i = backtrackIndex;
     return false;
 };
 
-CsvLexer.prototype._NUMBER = function () {
-    var backtrackIndex = this.i;
-
-    this.i = backtrackIndex;
-    return false;
-};
-
-CsvLexer.prototype.nextToken = function () {
+CsvLexer.prototype.nextToken = function ()
+{
     if (typeof this.c() === 'undefined') {
         return new Token(Token.types.EOF_TYPE, Token.names[Token.types.EOF_TYPE]);
     }
@@ -122,18 +179,19 @@ CsvLexer.prototype.nextToken = function () {
 
 // PARSER ---------------------------------------------------------------------
 
-function Parser() {
+function Parser()
+{
 
 }
 
 // HEADER PARSER --------------------------------------------------------------
 
-function HeaderParser() {
+function CsvParser() {
 
 }
 
-HeaderParser.prototype = Object.create(Parser.prototype);
-HeaderParser.prototype.constructor = HeaderParser;
+CsvParser.prototype = Object.create(Parser.prototype);
+CsvParser.prototype.constructor = CsvParser;
 
 program
     .arguments('<file>')
