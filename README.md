@@ -34,42 +34,42 @@ will be parsed as a CSV header as defined by the following grammar.
 
 #### header
 
-![header](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/header.png)
+![header](https://github.com/ben-rowan/csv2json/blob/master/grammar/output/header/header.png)
 
 #### value
 
-![value](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/value.png)
+![value](https://github.com/ben-rowan/csv2json/blob/master/grammar/output/header/value.png)
 
 #### delimited_value
 
-![delimited_string](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/delimited_value.png)
+![delimited_string](https://github.com/ben-rowan/csv2json/blob/master/grammar/output/header/delimited_value.png)
 
 #### SEPARATOR
 
 This can be switched to a `\t` using the `-t` or `--tab` options.
 
-![SEPARATOR](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/SEPARATOR.png)
+![SEPARATOR](https://github.com/ben-rowan/csv2json/blob/master/grammar/output/header/SEPARATOR.png)
 
 #### DELIMITER
 
 This can be set to anything other that `SEPARATOR` or `NL` using the `-d <value>` or
 `--delimiter <value>` options.
 
-![DELIMITER](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/DELIMITER.png)
+![DELIMITER](https://github.com/ben-rowan/csv2json/blob/master/grammar/output/header/DELIMITER.png)
 
 #### NL
 
 This can be set the the Windows newline `\r\n` using the `-w` or `--windows-nl` options.
 
-![NL](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/NL.png)
+![NL](https://github.com/ben-rowan/csv2json/blob/master/grammar/output/header/NL.png)
 
 #### DEL_STRING
 
-![DEL_STRING](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/DEL_STRING.png)
+![DEL_STRING](https://github.com/ben-rowan/csv2json/blob/master/grammar/output/header/DEL_STRING.png)
 
 #### NON_DEL_STRING
 
-![NON_DEL_STRING](https://raw.githubusercontent.com/ben-rowan/csv2json/master/rrd-antlr/output/header/NON_DEL_STRING.png)
+![NON_DEL_STRING](https://github.com/ben-rowan/csv2json/blob/master/grammar/output/header/NON_DEL_STRING.png)
 
 ### Body
 
