@@ -58,9 +58,10 @@ function Lexer(input)
     this.input = input;
 }
 
-Lexer.prototype.consume = function ()
+Lexer.prototype.consume = function (n)
 {
-    ++this.i;
+    n = n || 1;
+    this.i += n;
 };
 
 Lexer.prototype.peek = function (n)
@@ -112,7 +113,7 @@ CsvLexer.prototype._WS = function ()
 
 CsvLexer.prototype._NL = function ()
 {
-    this.consume();
+    this.consume(this.nl.length);
     return new Token(Token.types.NL_TYPE, Token.names[Token.types.NL_TYPE]);
 };
 
@@ -165,7 +166,7 @@ CsvLexer.prototype.nextToken = function ()
     if (this.c() === this.nl || this.c() + this.peek() === this.nl) {
         return this._NL();
     }
-    
+
     var token = null;
     if ( (token = this._DEL_STRING()) !== false ) {}
     else if ( (token = this._NUMBER()) !== false ) {}
