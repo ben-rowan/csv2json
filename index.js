@@ -162,19 +162,18 @@ CsvLexer.prototype.nextToken = function ()
         return new Token(Token.types.EOF_TYPE, Token.names[Token.types.EOF_TYPE]);
     }
 
-    switch (this.c()) {
-        case this.nl:
-            return this._NL();
-        default:
-            var token = null;
-            if ( (token = this._DEL_STRING()) !== false ) {}
-            else if ( (token = this._NUMBER()) !== false ) {}
-            else if ( (token = this._NON_DEL_STRING()) !== false ) {}
-            else {
-                throw new LexerException('Syntax error found at character (' + this.i + ').');
-            }
-            return token;
+    if (this.c() === this.nl || this.c() + this.peek() === this.nl) {
+        return this._NL();
     }
+    
+    var token = null;
+    if ( (token = this._DEL_STRING()) !== false ) {}
+    else if ( (token = this._NUMBER()) !== false ) {}
+    else if ( (token = this._NON_DEL_STRING()) !== false ) {}
+    else {
+        throw new LexerException('Syntax error found at character (' + this.i + ').');
+    }
+    return token;
 };
 
 // PARSER ---------------------------------------------------------------------
